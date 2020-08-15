@@ -37,7 +37,13 @@ app.use(function (req, res, next) {
   res.writeHead("200", { "Content-Type": "text/html; charset=utf8" });
   res.write("<h1>챗봇 페이지입니다 </h1>");
   res.write(
-    "<div>sentence<li>hi</li><li>where are you located</li> <li>what is your name</li></div>"
+    "<div>sentence<li>hi</li><li>where are you located?</li> <li>what is your name?</li></div>"
+  );
+  res.write(
+    "<input id ='sentence' type=text/> <button onclick = onClick()>입력</button>"
+  );
+  res.write(
+    "<script>function onClick (){  var link = document.location.href.split('?')[0] + 'chatbot'+'?';var sen =document.getElementById('sentence').value; location.href = link + 'sentence=' + sen;}</script> "
   );
   res.end();
 });
