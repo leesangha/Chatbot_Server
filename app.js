@@ -10,7 +10,7 @@ router.route("/process/login").get((req, res) => {
   res.send("<h3>서버에서 응답1 : " + "asdf" + " </h3>");
 });
 router.route("/chatbot").get((req, res) => {
-  var sentence = req.query.sentence || "  Hi,there";
+  var sentence = req.query.sentence.split("?")[0] || "  Hi,there";
   if (sentence === "hi") {
     sentence = "hello";
   } else if (sentence === "what is your name") sentence = "Lee Sang-ha";
@@ -34,8 +34,12 @@ app.set("port", 8080);
 
 app.use(function (req, res, next) {
   console.log("middle ware default");
-
-  res.send("<h3>챗봇 초기화면입니다 :  </h3>");
+  res.writeHead("200", { "Content-Type": "text/html; charset=utf8" });
+  res.write("<h1>챗봇 페이지입니다 </h1>");
+  res.write(
+    "<div>sentence<li>hi</li><li>where are you located</li> <li>what is your name</li></div>"
+  );
+  res.end();
 });
 var server = http.createServer(app).listen(app.get("port"), () => {
   console.log("express로 웹서버 실행" + app.get("port"));
