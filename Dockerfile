@@ -1,11 +1,14 @@
 FROM node:12
+# Create app directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-
+# Install app dependencies
+COPY package.json /usr/src/app/
 RUN npm install
 
-COPY . .
+# Bundle app source
+COPY . /usr/src/app
 
 EXPOSE 8080
-CMD [" node", "app.js"]
+CMD ["node", "app.js"]
