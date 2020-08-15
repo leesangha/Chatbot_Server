@@ -1,5 +1,5 @@
 FROM node:12
-WORKDIR /home/samghalee1/Chatbot_Server
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
