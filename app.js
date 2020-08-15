@@ -30,7 +30,7 @@ router.route("/chatbot").get((req, res) => {
 });
 app.use("/", router);
 
-app.set("port", 3001);
+app.set("port", 8080);
 
 app.use(function (req, res, next) {
   console.log("middle ware default");
